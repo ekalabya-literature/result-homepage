@@ -94,15 +94,16 @@
 </head>
 <body class="antialiased">
 
-  <!-- HEADER / NAVBAR -->
+  <!-- HEADER / NAVBAR with actual logo image -->
   <header class="sticky top-0 z-30 bg-[#FDFBF7]/95 backdrop-blur-sm border-b border-[#0D1B2A]/10 shadow-sm">
     <div class="container mx-auto px-5 md:px-8 py-4 flex flex-wrap items-center justify-between">
+      <!-- Logo image + title (logo.jpeg from repository) -->
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-[#0D1B2A] flex items-center justify-center shadow-md">
-          <i class="fas fa-feather-alt text-[#D4AF37] text-lg"></i>
+        <div class="w-10 h-10 rounded-full overflow-hidden bg-white shadow-md flex items-center justify-center border border-[#D4AF37]/30">
+          <img src="logo.jpeg" alt="Ekalavya Club Logo" class="w-full h-full object-cover object-center">
         </div>
         <div>
-          <h1 class="serif-heading text-xl md:text-2xl font-bold tracking-tight text-[#0D1B2A] leading-tight">EKALAVYA <span class="text-[#B8860B]">|</span> একালব্য</h1>
+          <h1 class="serif-heading text-xl md:text-2xl font-bold tracking-tight text-[#0D1B2A] leading-tight">EKALABYA <span class="text-[#B8860B]">|</span> একালব্য</h1>
           <p class="text-[11px] md:text-xs tracking-wide text-[#0D1B2A]/70 -mt-0.5">Assamese Literature Club</p>
         </div>
       </div>
@@ -129,7 +130,7 @@
           <span class="inline-block mt-2">Digital Poetry Competition</span>
         </h1>
         <div class="w-24 h-1 bg-[#D4AF37] mx-auto my-6 rounded-full"></div>
-       
+  
         <div class="mt-6 flex flex-wrap justify-center gap-4 text-center">
           <div class="bg-white/70 shadow-sm rounded-xl px-6 py-2 border-l-4 border-[#D4AF37] flex items-center gap-2">
             <i class="fas fa-calendar-alt text-[#B8860B]"></i>
@@ -148,7 +149,7 @@
             <span class="hidden md:inline">•</span>
             <span class="font-bold text-[#B8860B]"><i class="fas fa-rupee-sign mr-1"></i> তৃতীয় পুৰস্কাৰ:</span> নগদ ধন ৫০০০ টকা
           </div>
-
+          <div class="text-[10px] md:text-xs text-center mt-2 text-[#0D1B2A]/60">পূর্বকালসমূহ গৌৰৱময় • ১৩ মে প্রতিযোগিতা অনুষ্ঠিত</div>
         </div>
       </div>
     </section>
@@ -319,7 +320,6 @@
     const emailInput = document.getElementById('emailCert');
     const phoneCertInput = document.getElementById('phoneCert');
 
-    // Helper functions for modal
     function openCertModal() {
       certModal.classList.remove('hidden');
       certModal.classList.add('flex');
@@ -333,7 +333,6 @@
 
     openCertBtn.addEventListener('click', openCertModal);
     closeCertBtn.addEventListener('click', closeCertModal);
-    // Click outside modal to close
     certModal.addEventListener('click', (e) => {
       if (e.target === certModal) closeCertModal();
     });
@@ -350,9 +349,7 @@
       const email = emailInput.value.trim();
       const phone = phoneCertInput.value.trim();
 
-      // Roll Number validation: must match pattern #EL followed by numbers (case-insensitive but we store as given, min length 4)
-      const rollPattern = /^#EL[A-Z0-9]{3,}$/i;  // #EL followed by at least 3 alphanumeric (like #EL001 or #ELAB12)
-      // Allow #ELXXX where X can be letters or digits, but typical #EL042
+      const rollPattern = /^#EL[A-Z0-9]{3,}$/i;
       if (!roll) {
         alert("❌ অনুগ্ৰহ কৰি ৰোল নম্বৰ দিয়ক (ফৰমেট #ELXXX)।\nPlease enter your Roll Number in format #ELXXX (e.g., #EL042).");
         return;
@@ -361,7 +358,6 @@
         alert("❌ ৰোল নম্বৰৰ ফৰমেট শুদ্ধ নহয়। উদাহৰণ: #EL042, #EL101\nInvalid Roll Number format. Expected format: #ELXXX (e.g., #EL042).");
         return;
       }
-      // Email validation
       const emailPattern = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
       if (!email) {
         alert("📧 অনুগ্ৰহ কৰি ইমেইল ঠিকনা দিয়ক।\nPlease enter your email address.");
@@ -371,7 +367,6 @@
         alert("📧 অনুগ্ৰহ কৰি বৈধ ইমেইল ঠিকনা দিয়ক (যেনে name@example.com).\nPlease provide a valid email address.");
         return;
       }
-      // Phone validation
       const phoneRegex = /^[0-9+\-\s()]{8,15}$/;
       if (!phone) {
         alert("📞 অনুগ্ৰহ কৰি ফোন নম্বৰ দিয়ক।\nPlease enter your contact number.");
@@ -382,10 +377,8 @@
         return;
       }
       
-      // Success alert for certificate application
       alert("🎉 অভিনন্দন! আপোনাৰ সন্মানপত্ৰৰ বাবে আবেদন সফলভাৱে গ্ৰহণ কৰা হৈছে।\n✅ Your application for the Certificate of Participation has been submitted successfully. The e-certificate will be sent to your registered email within 3-5 working days. ধন্যবাদ!");
       
-      // Reset form
       rollNoInput.value = '';
       emailInput.value = '';
       phoneCertInput.value = '';
